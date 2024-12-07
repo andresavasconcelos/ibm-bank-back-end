@@ -31,3 +31,10 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Intellij ###
+.idea/
+.mvn/
+
+### Git ###
+.git/
