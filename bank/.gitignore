@@ -35,6 +35,9 @@ build/
 ### Intellij ###
 .idea/
 .mvn/
+.mvn/wrapper
+mvnw/
 
 ### Git ###
 .git/
+.gitattributes
