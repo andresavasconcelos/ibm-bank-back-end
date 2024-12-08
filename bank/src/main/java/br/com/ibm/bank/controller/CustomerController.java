@@ -56,14 +56,14 @@ public class CustomerController {
     }
 
     private void validateCustomerParameters(CustomerDTO customerDTO) throws EmptyException {
-        if(customerDTO.getName().equals("") || customerDTO.getName() == null
+        if(customerDTO.getDocument().isEmpty() || customerDTO.getDocument() == null
+                || customerDTO.getName().isEmpty() || customerDTO.getName() == null
                 || customerDTO.getAge() == null || customerDTO.getEmail().isEmpty()
                 || customerDTO.getEmail() == null)
             throw  new EmptyException("Parameters is null", 99,
-                    "name: " + customerDTO.getName()
-                    + " age:" + customerDTO.getAge()
-                    + " email: " + customerDTO.getEmail() );
-
-        log.info("Parameters is not null");
+                        "name: " + customerDTO.getName()
+                        + " age: " + customerDTO.getAge()
+                        + " email: " + customerDTO.getEmail() );
+            log.info("Parameters is not null");
     }
 }

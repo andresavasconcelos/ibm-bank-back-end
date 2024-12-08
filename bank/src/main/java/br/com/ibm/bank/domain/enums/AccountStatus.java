@@ -5,19 +5,19 @@ public enum AccountStatus {
     BLOCKED(2, "BLOCKED"),
     CLOSED(3, "CLOSED");
 
-    private final int valor;
-    private final String descricao;
+    private final int value;
+    private final String description;
 
-    AccountStatus(int valor, String descricao) {
-        this.valor = valor;
-        this.descricao = descricao;
+    AccountStatus(int value, String description) {
+        this.value = value;
+        this.description = description;
     }
 
-    public int getValor() {
-        return this.valor;
+    public int getValue() {
+        return this.value;
     }
-    public String getDescricao() {
-        return this.descricao;
+    public String getDescription() {
+        return this.description;
     }
 
 }

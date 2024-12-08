@@ -8,11 +8,11 @@ import lombok.Setter;
 public class AccountDTO {
 
     private Integer numberAccount;
-    private String branch;
-    private String accountType;
+    private Integer branch;
+    private Integer accountType;
     private Double balance;
 
-    public AccountDTO(Integer numberAccount, String branch, String accountType, Double balance) {
+    public AccountDTO(Integer numberAccount, Integer branch, Integer accountType, Double balance) {
         this.numberAccount = numberAccount;
         this.branch = branch;
         this.accountType = accountType;

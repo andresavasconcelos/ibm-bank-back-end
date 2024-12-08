@@ -19,6 +19,9 @@ public class Customer {
     @Column(name = "ID_CUSTOMER")
     private Integer id;
 
+    @Column(name = "DOCUMENT", nullable = false, length = 11, unique = true)
+    private String document;
+
     @Column(name = "NAME", nullable = false, length = 255)
     private String name;
 

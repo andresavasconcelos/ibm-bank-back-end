@@ -6,11 +6,13 @@ import lombok.Setter;
 @Setter
 public class CustomerDTO {
 
+    private String document;
     private String name;
     private Integer age;
     private String email;
 
-    public CustomerDTO(String name, Integer age, String email) {
+    public CustomerDTO(String document,String name, Integer age, String email) {
+        this.document = document;
         this.name = name;
         this.age = age;
         this.email = email;

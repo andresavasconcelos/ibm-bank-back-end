@@ -1,9 +1,12 @@
 package br.com.ibm.bank.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-import java.text.DecimalFormat;
 import java.time.LocalDate;
 
 @Getter
@@ -30,11 +33,9 @@ public class Transaction {
     @Column(name = "UPDATE_DATE")
     private LocalDate updateDate;
 
-    @Column(name = "CREATE_DATE")
-    private LocalDate createDate;
-
     @ManyToOne
-    @JoinColumn(name = "tbl_accounts")
+    @JoinColumn(name = "TBL_ACCOUNTS_ID_ACCONT")
+    @JsonIgnoreProperties("transactions")
     private Account account;
 
 }

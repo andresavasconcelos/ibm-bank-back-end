@@ -6,19 +6,19 @@ public enum AccountType {
     SAVINGS(2, "SAVINGS"),
     INVESTMENT(3, "INVETMENT");
 
-    private final int valor;
-    private final String descricao;
+    private final int value;
+    private final String description;
 
-    AccountType(int valor, String descricao) {
-        this.valor = valor;
-        this.descricao = descricao;
+    AccountType(int valor, String description) {
+        this.value = valor;
+        this.description = description;
     }
 
-    public int getValor() {
-        return this.valor;
+    public int getValue() {
+        return this.value;
     }
-    public String getDescricao() {
-        return this.descricao;
+    public String getDescription() {
+        return this.description;
     }
 
 }
