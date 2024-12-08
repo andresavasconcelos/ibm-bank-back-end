@@ -20,25 +20,25 @@ public class Account {
     @Column(name = "ID_ACCOUNT")
     private Integer id;
 
-    @Column(name = "NUMBER_ACCOUNT")
+    @Column(name = "NUMBER_ACCOUNT", nullable = false)
     private Integer numberAccount;
 
-    @Column(name = "BRANCH")
-    private String branch;
+    @Column(name = "BRANCH", nullable = false, length = 45)
+    private String branch = "1234567";
 
-    @Column(name = "ACCOUNT_TYPE")
+    @Column(name = "ACCOUNT_TYPE", nullable = false)
     private String accountType;
 
-    @Column(name = "BALANCE")
+    @Column(name = "BALANCE", nullable = false)
     private Double balance;
 
-    @Column(name = "STATUS")
+    @Column(name = "STATUS", nullable = false)
     private String status;
 
-    @Column(name = "CREATE_DATE")
+    @Column(name = "CREATE_DATE", nullable = false)
     private LocalDate createDate;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     private List<Transaction> transactions;
 
 

@@ -4,9 +4,10 @@ import br.com.ibm.bank.domain.entity.Account;
 import br.com.ibm.bank.domain.entity.Transaction;
 import br.com.ibm.bank.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-
+@Service
 public class TransactionServiceImpl implements ITransactionService{
 
     @Autowired

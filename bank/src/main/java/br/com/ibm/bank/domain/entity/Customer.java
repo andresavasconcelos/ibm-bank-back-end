@@ -11,21 +11,21 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode
 @Entity
-@Table(name="tbl_accounts")
+@Table(name="tbl_customers")
 public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_CUSTOMER")
+    @Column(name = "ID_CUSTOMER")
     private Integer id;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME", nullable = false, length = 255)
     private String name;
 
-    @Column(name = "AGE")
+    @Column(name = "AGE", nullable = false)
     private Integer age;
 
-    @Column(name = "EMAIL")
+    @Column(name = "EMAIL", nullable = false, length = 255)
     private String email;
 
     @Column(name = "CREATE_DATE")
@@ -36,7 +36,7 @@ public class Customer {
 
     @ManyToMany
     @JoinTable(name = "tbl_customers_accounts",
-                joinColumns = @JoinColumn(name="id_customer"),
-                inverseJoinColumns = @JoinColumn(name="id_account"))
+                joinColumns = @JoinColumn(name="ID_CUSTOMER"),
+                inverseJoinColumns = @JoinColumn(name="ID_ACCONT"))
     private List<Account> accounts;
 }
