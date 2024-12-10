@@ -14,7 +14,7 @@ Esse projeto back-end consiste em simular operações de um banco, ou seja, cada
 
 ## Práticas adotadas
 
-- SOLID, DRY, YAGNI, KISS
+- SOLID
 - API REST
 - Consultas com Spring Data JPA
 - Injeção de Dependências
