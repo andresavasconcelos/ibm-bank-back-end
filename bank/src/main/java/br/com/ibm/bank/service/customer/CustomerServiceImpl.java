@@ -1,6 +1,7 @@
 package br.com.ibm.bank.service.customer;
 
 import br.com.ibm.bank.domain.dto.CustomerDTO;
+import br.com.ibm.bank.domain.dto.ResponseCustomerDTO;
 import br.com.ibm.bank.domain.entity.Account;
 import br.com.ibm.bank.domain.entity.Customer;
 import br.com.ibm.bank.repository.CustomerRepository;
@@ -36,9 +37,9 @@ public class CustomerServiceImpl implements ICustomerService{
         customer.setUpdateDate(LocalDate.now());
         customer.setCreateDate(LocalDate.now());
 
-        customer = findCustomerByDocument(customer.getDocument());
+        Customer customerExist = findCustomer(customer.getDocument());
 
-        if(customer != null){
+        if(customerExist == null){
             Account account = accountService.create(getLastThreeDigits(customer.getDocument()));
 
             List<Account> accountList = new ArrayList<>();
@@ -55,7 +56,24 @@ public class CustomerServiceImpl implements ICustomerService{
         return document.substring(document.length() - 3);
     }
 
-    private Customer findCustomerByDocument(String document){
-        return repository.findByDocument(document);
+    @Override
+    public ResponseCustomerDTO findCustomerByDocument(String document){
+
+        ResponseCustomerDTO customerDTO = new ResponseCustomerDTO();
+
+        Customer customer = repository.findByDocument(document);
+
+        customerDTO.setId(customer.getId());
+        customerDTO.setDocument(customer.getDocument());
+        customerDTO.setName(customer.getName());
+        customerDTO.setAge(customer.getAge());
+        customerDTO.setEmail(customer.getEmail());
+        customerDTO.setAccounts(customer.getAccounts());
+
+        return customerDTO;
+    }
+
+    private Customer findCustomer(String document){
+        return  repository.findByDocument(document);
     }
 }

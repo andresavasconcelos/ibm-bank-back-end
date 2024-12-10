@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
+
 @Service
 public class TransactionServiceImpl implements ITransactionService{
 
@@ -28,16 +30,35 @@ public class TransactionServiceImpl implements ITransactionService{
     }
 
     @Override
-    public void creditBalance(Integer id, Double amountToCredit) throws ValidationException {
-        Account account = accountService.findByNumberAccount(id);
+    public void creditBalance(Integer accountNumber, Double amountToCredit) {
+
+        Account account = accountService.findByNumberAccount(accountNumber);
+        if(account != null && account.getStatus() == AccountStatus.ACTIVE.getValue()) {
+            Double resultBalanceDebit = account.getBalance() + amountToCredit;
+            account.setBalance(resultBalanceDebit);
+
+            Transaction transaction = new Transaction();
+            transaction.setIdAccount(account.getId());
+            transaction.setTransactionType(TransactionType.DEPOSIT.getValue());
+            transaction.setAmount(amountToCredit);
+            transaction.setAccount(account);
+            transaction.setUpdateDate(LocalDate.now());
+
+            repository.save(transaction);
+        }
+    }
+
+    @Override
+    public void debitBalance(Integer accountNumber, Double amountToDebit) throws ValidationException {
+        Account account = accountService.findByNumberAccount(accountNumber);
 
         if(account != null && account.getStatus() == AccountStatus.ACTIVE.getValue()){
             if(!account.getBalance().equals(0.00) ){
                 Transaction transaction = new Transaction();
                 transaction.setIdAccount(account.getId());
                 transaction.setTransactionType(TransactionType.TRANSFER.getValue());
-                transaction.setAmount(amountToCredit);
-                transaction.setAccount(balanceCalculation(account, amountToCredit));
+                transaction.setAmount(amountToDebit);
+                transaction.setAccount(balanceCalculation(account, amountToDebit));
                 transaction.setUpdateDate(LocalDate.now());
 
                 repository.save(transaction);
@@ -49,23 +70,13 @@ public class TransactionServiceImpl implements ITransactionService{
         }
     }
 
-
     @Override
-    public void debitBalance(Integer id, Double amountToDebit) {
-        Account account = accountService.findByNumberAccount(id);
-        if(account != null && account.getStatus() == AccountStatus.ACTIVE.getValue()) {
-            Double resultBalanceDebit = account.getBalance() + amountToDebit;
-            account.setBalance(resultBalanceDebit);
+    public List<Transaction> extract(Integer idAccount) {
 
-            Transaction transaction = new Transaction();
-            transaction.setIdAccount(account.getId());
-            transaction.setTransactionType(TransactionType.DEPOSIT.getValue());
-            transaction.setAmount(amountToDebit);
-            transaction.setAccount(account);
-            transaction.setUpdateDate(LocalDate.now());
+        List<Transaction> extract = repository.findByIdAccount(idAccount);
 
-            repository.save(transaction);
-        }
+
+        return extract;
     }
 
     private Account balanceCalculation(Account account, Double amountToCredit) throws ValidationException {

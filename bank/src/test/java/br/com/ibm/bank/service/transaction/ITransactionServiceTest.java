@@ -82,7 +82,7 @@ class ITransactionServiceTest {
     }
 
     @Test
-    void testDebitBalance_Success() {
+    void testDebitBalance_Success() throws jakarta.xml.bind.ValidationException {
 
         Account mockAccount = new Account();
         mockAccount.setId(1);

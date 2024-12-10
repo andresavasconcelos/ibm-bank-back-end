@@ -6,6 +6,7 @@ import br.com.ibm.bank.domain.enums.AccountStatus;
 import br.com.ibm.bank.domain.enums.AccountType;
 import br.com.ibm.bank.domain.enums.Branch;
 import br.com.ibm.bank.repository.AccountRepository;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.validation.ValidationException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,7 +30,12 @@ public class AccountServiceImpl implements IAccountService{
     @Override
     public Account create(String endDocument) {
         Account account = new Account();
-        account.setNumberAccount(generateAccountNumber(endDocument));
+
+        Integer numberAccount = generateAccountNumber(endDocument);
+
+        log.info("numberAccount " + numberAccount);
+
+        account.setNumberAccount(numberAccount);
         account.setBranch(Branch.BRANCH_VILMARIANA_SAOPAULO.getValue());
         account.setAccountType(AccountType.SAVINGS);
         account.setBalance(noBalance);
@@ -66,6 +72,6 @@ public class AccountServiceImpl implements IAccountService{
 
     public static synchronized Integer generateAccountNumber(String endDocument) {
         String currentNumberResult = currentNumber + endDocument;
-        return Integer.getInteger(currentNumberResult);
+        return Integer.valueOf(currentNumberResult);
     }
 }

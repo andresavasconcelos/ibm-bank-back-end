@@ -7,11 +7,11 @@ import lombok.Setter;
 @Setter
 public class TransferRequestDTO {
 
-    private Integer id;
+    private Integer accountNumber;
     private Double amount;
 
-    public TransferRequestDTO(Integer id, Double amount) {
-        this.id = id;
+    public TransferRequestDTO(Integer accountNumber, Double amount) {
+        this.accountNumber = accountNumber;
         this.amount = amount;
     }
 

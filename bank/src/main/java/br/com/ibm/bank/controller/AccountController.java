@@ -3,16 +3,13 @@ package br.com.ibm.bank.controller;
 import br.com.ibm.bank.domain.dto.AccountDTO;
 import br.com.ibm.bank.domain.exception.ErrorResponse;
 import br.com.ibm.bank.service.account.IAccountService;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -26,7 +23,7 @@ public class AccountController {
         this.service = service;
     }
 
-    @PostMapping("/account/find/{id}")
+    @GetMapping("/account/find/{id}")
     public ResponseEntity<?> findAccount(@PathVariable Integer id){
         log.info("Starting method findAccount account");
         try{
