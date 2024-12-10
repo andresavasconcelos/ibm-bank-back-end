@@ -32,4 +32,4 @@ Esse projeto back-end consiste em simular operações de um banco, ou seja, cada
 
 ## Modelagem do Banco de Dados  
 
-<img width="100%" height="95" src="readme/modelagem.pgn" />
+<img width="100%" height="100%" src="https://github.com/andresavasconcelos/ibm-bank-back-end/blob/main/readme/modelagem.png?raw=true" />
